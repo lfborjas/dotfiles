@@ -1,0 +1,5 @@
+(setq racket-program "/Applications/Racket/bin/racket")
+(defun enable-lambda ()
+  (setq prettify-symbols-alist '(("lambda" . 955))))
+(add-hook 'racket-mode-hook 'enable-lambda)
+;; see also racket-unicode-input-method-enable as per: https://stackoverflow.com/a/39445911 (except that I _do_ want it lol)
