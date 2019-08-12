@@ -13,4 +13,6 @@
 (require 'cider)
 
 (org-defkey org-mode-map "\C-x\C-e" 'cider-eval-last-sexp)
+(org-defkey org-mode-map "\C-c\C-d" 'cider-doc)      
+
 
