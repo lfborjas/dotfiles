@@ -242,3 +242,13 @@
 
 (server-start)
 (setq server-temp-file-regexp ".*")
+
+
+(add-hook 'org-present-mode-hook
+          (lambda ()
+            (org-present-big)
+            (define-key org-present-mode-keymap [right]  nil)
+            (define-key org-present-mode-keymap [left]   nil)
+            (define-key org-present-mode-keymap (kbd "C-n")  'org-present-next)
+            (define-key org-present-mode-keymap (kbd "C-p")   'org-present-prev)
+            (org-display-inline-images)))
