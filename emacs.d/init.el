@@ -252,3 +252,8 @@
             (define-key org-present-mode-keymap (kbd "C-n")  'org-present-next)
             (define-key org-present-mode-keymap (kbd "C-p")   'org-present-prev)
             (org-display-inline-images)))
+
+;; weird issue with https and the elpa server:
+;; https://www.reddit.com/r/emacs/comments/cdei4p/failed_to_download_gnu_archive_bad_request/
+;; + https://emacs.stackexchange.com/questions/51615/my-init-el-gets-stuck-on-trying-to-install-spinner-a-sub-dependency-of-cider#comment79634_51615
+(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
