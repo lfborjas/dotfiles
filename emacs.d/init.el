@@ -193,7 +193,7 @@
     ("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
  '(package-selected-packages
    (quote
-    (magit muse markdown-mode haskell-mode slime racket-mode yaml-mode tagedit solarized-theme smex rainbow-delimiters projectile php-mode paredit ido-ubiquitous feature-mode exec-path-from-shell clojure-mode-extra-font-locking cider)))
+    (org-present epresent magit muse markdown-mode haskell-mode slime racket-mode yaml-mode tagedit solarized-theme smex rainbow-delimiters projectile php-mode paredit ido-ubiquitous feature-mode exec-path-from-shell clojure-mode-extra-font-locking cider)))
  '(pos-tip-background-color "#073642")
  '(pos-tip-foreground-color "#93a1a1")
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))
@@ -242,3 +242,13 @@
 
 (server-start)
 (setq server-temp-file-regexp ".*")
+
+
+(add-hook 'org-present-mode-hook
+          (lambda ()
+            (org-present-big)
+            (define-key org-present-mode-keymap [right]  nil)
+            (define-key org-present-mode-keymap [left]   nil)
+            (define-key org-present-mode-keymap (kbd "C-n")  'org-present-next)
+            (define-key org-present-mode-keymap (kbd "C-p")   'org-present-prev)
+            (org-display-inline-images)))
