@@ -78,7 +78,10 @@
     tagedit
 
     ;; git integration
-    magit))
+    magit
+
+    ;; more reasonable package configuration/loading
+    use-package))
 
 ;; On OS X, an Emacs instance started from the graphical user
 ;; interface will have a different environment than a shell in a
@@ -148,6 +151,16 @@
 
 ;; for literature
 (load "writing.el")
+
+
+;; mobot-specific configs:
+(add-to-list 'load-path "~/.emacs.d/config")
+(load "setup-python.el")
+
+(use-package aggressive-indent
+  :ensure t
+  :diminish
+  :config (global-aggressive-indent-mode))
 
 ;; tramp setup
 (setq tramp-default-method "ssh")
