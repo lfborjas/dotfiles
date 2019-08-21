@@ -206,6 +206,11 @@
            '(aw-leading-char-face
              ((t (:inherit aw-mode-line-face :foreground "orange red" :weight bold :height 3.0))))))
 
+
+;; TODO: look into dumb-jump/ag and smartscan:
+;; https://github.com/jcorrado/dotfiles/blob/9ed00cc3cff418bfdf9163b27bcb7527d6f8c5ad/tag-emacs/emacs.d/init.el#L334
+;; https://github.com/jcorrado/dotfiles/blob/9ed00cc3cff418bfdf9163b27bcb7527d6f8c5ad/tag-emacs/emacs.d/init.el#L216
+
 ;; tramp setup
 (setq tramp-default-method "ssh")
 (custom-set-variables
