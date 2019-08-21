@@ -162,8 +162,6 @@
   :diminish
   :config (global-aggressive-indent-mode))
 
-;; copied from mobot dotfiles, too:
-
 (use-package ivy
   :ensure t
   :diminish
@@ -188,6 +186,25 @@
   :diminish
   :bind (("M-/" . company-complete))
   :config (global-company-mode))
+
+(use-package git-gutter-fringe
+  :ensure t
+  :diminish git-gutter-mode
+  :config
+  (set-face-foreground 'git-gutter-fr:modified "deep sky blue")
+  (set-face-foreground 'git-gutter-fr:added    "green")
+  (set-face-foreground 'git-gutter-fr:deleted  "red")
+  (global-git-gutter-mode t))
+
+(use-package ace-window
+  :ensure t
+  :bind (("C-x o" . ace-window)
+         ("M-o" . ace-window))
+  :init (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)
+              aw-scope 'frame)
+  :config (custom-set-faces
+           '(aw-leading-char-face
+             ((t (:inherit aw-mode-line-face :foreground "orange red" :weight bold :height 3.0))))))
 
 ;; tramp setup
 (setq tramp-default-method "ssh")
@@ -241,7 +258,7 @@
     ("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
  '(package-selected-packages
    (quote
-    (org-present epresent magit muse markdown-mode haskell-mode slime racket-mode yaml-mode tagedit solarized-theme smex rainbow-delimiters projectile php-mode paredit ido-ubiquitous feature-mode exec-path-from-shell clojure-mode-extra-font-locking cider)))
+    (ace-window org-present epresent magit muse markdown-mode haskell-mode slime racket-mode yaml-mode tagedit solarized-theme smex rainbow-delimiters projectile php-mode paredit ido-ubiquitous feature-mode exec-path-from-shell clojure-mode-extra-font-locking cider)))
  '(pos-tip-background-color "#073642")
  '(pos-tip-foreground-color "#93a1a1")
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))
