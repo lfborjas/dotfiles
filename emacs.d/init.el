@@ -175,6 +175,12 @@
   :bind (("C-c C-r" . ivy-resume))
   :config (ivy-mode t))
 
+(use-package sqlup-mode
+  :ensure t
+  :diminish
+  :init (setq sqlup-blacklist '("name" "id" "state" "result" "action"))
+  :config (add-hook 'sql-mode-hook 'sqlup-mode))
+
 (use-package swiper
   :ensure t
   :init (setq enable-recursive-minibuffers nil)
@@ -263,7 +269,7 @@
     ("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
  '(package-selected-packages
    (quote
-    (ace-window org-present epresent magit muse markdown-mode haskell-mode slime racket-mode yaml-mode tagedit solarized-theme smex rainbow-delimiters projectile php-mode paredit ido-ubiquitous feature-mode exec-path-from-shell clojure-mode-extra-font-locking cider)))
+    (sqlup-mode ace-window org-present epresent magit muse markdown-mode haskell-mode slime racket-mode yaml-mode tagedit solarized-theme smex rainbow-delimiters projectile php-mode paredit ido-ubiquitous feature-mode exec-path-from-shell clojure-mode-extra-font-locking cider)))
  '(pos-tip-background-color "#073642")
  '(pos-tip-foreground-color "#93a1a1")
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))
@@ -303,7 +309,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(aw-leading-char-face ((t (:inherit aw-mode-line-face :foreground "orange red" :weight bold :height 3.0)))))
 
 ;; cmd-p keeps killing my emacs
 (global-unset-key (kbd "s-p"))

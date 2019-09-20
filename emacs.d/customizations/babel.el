@@ -6,7 +6,8 @@
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((clojure . t)
-   (emacs-lisp . t)))
+   (emacs-lisp . t)
+   (python . t)))
 
 ;; Use cider as the Clojure execution backend
 (setq org-babel-clojure-backend 'cider)
