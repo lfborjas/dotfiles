@@ -184,6 +184,17 @@
 (use-package ag
   :ensure t)
 
+;; for more on elm-mode:
+;; https://github.com/jcollard/elm-mode
+(use-package elm-mode
+  :ensure t
+  :init (setq elm-format-on-save t
+              elm-package-json "elm.json")
+  :config (add-to-list 'company-backends 'company-elm))
+
+(use-package yaml-mode
+  :ensure t)
+
 (use-package swiper
   :ensure t
   :init (setq enable-recursive-minibuffers nil)
@@ -274,7 +285,7 @@
     ("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
  '(package-selected-packages
    (quote
-    (sqlup-mode ag ace-window org-present epresent magit muse markdown-mode haskell-mode slime racket-mode yaml-mode tagedit solarized-theme smex rainbow-delimiters projectile php-mode paredit ido-ubiquitous feature-mode exec-path-from-shell clojure-mode-extra-font-locking cider)))
+    (reformatter elm-mode sqlup-mode ag ace-window org-present epresent magit muse markdown-mode haskell-mode slime racket-mode yaml-mode tagedit solarized-theme smex rainbow-delimiters projectile php-mode paredit ido-ubiquitous feature-mode exec-path-from-shell clojure-mode-extra-font-locking cider)))
  '(pos-tip-background-color "#073642")
  '(pos-tip-foreground-color "#93a1a1")
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))
