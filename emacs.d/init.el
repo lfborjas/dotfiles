@@ -255,6 +255,7 @@
  '(electric-indent-mode nil)
  '(fci-rule-color "#282a2e")
  '(haskell-process-type (quote stack-ghci))
+ '(haskell-stylish-on-save t)
  '(highlight-changes-colors (quote ("#d33682" "#6c71c4")))
  '(highlight-symbol-colors
    (--map
@@ -288,6 +289,15 @@
     (reformatter elm-mode sqlup-mode ag ace-window org-present epresent magit muse markdown-mode haskell-mode slime racket-mode yaml-mode tagedit solarized-theme smex rainbow-delimiters projectile php-mode paredit ido-ubiquitous feature-mode exec-path-from-shell clojure-mode-extra-font-locking cider)))
  '(pos-tip-background-color "#073642")
  '(pos-tip-foreground-color "#93a1a1")
+ '(safe-local-variable-values
+   (quote
+    ((cider-test-infer-test-ns lambda
+                               (ns)
+                               (if
+                                   (string-match "^[^.]+.test" ns)
+                                   ns
+                                 (replace-regexp-in-string "^\\([^.]+\\)." "\\1.test." ns)))
+     (cider-shadow-cljs-default-options . "app"))))
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))
  '(term-default-bg-color "#002b36")
  '(term-default-fg-color "#839496")
