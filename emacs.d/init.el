@@ -241,7 +241,8 @@
   :commands 'dante-mode
   :init
   (add-hook 'haskell-mode-hook 'flycheck-mode)
-  (add-hook 'haskell-mode-hook 'dante-mode))
+  (add-hook 'haskell-mode-hook 'dante-mode)
+  (setq dante-tap-type-time 2))
 
 ;; Recommended by Dante:
 ;; https://github.com/jyp/dante/tree/7411904bfbde25cdb986e001ec682593dcb7c5e3#installation
