@@ -227,6 +227,35 @@
              ((t (:inherit aw-mode-line-face :foreground "orange red" :weight bold :height 3.0))))))
 
 
+;; https://www.flycheck.org/en/latest/user/installation.html
+;; TODO: had to install this manually from MELPA stable, since
+;; it wasn't found in MELPA?
+;; TODONE: I needed to `package-refresh-contents`:
+;; https://github.com/flycheck/flycheck/issues/744
+(use-package flycheck
+  :ensure t)
+
+(use-package dante
+  :ensure t
+  :after haskell-mode
+  :commands 'dante-mode
+  :init
+  (add-hook 'haskell-mode-hook 'flycheck-mode)
+  (add-hook 'haskell-mode-hook 'dante-mode))
+
+;; Recommended by Dante:
+;; https://github.com/jyp/dante/tree/7411904bfbde25cdb986e001ec682593dcb7c5e3#installation
+(auto-save-visited-mode 1)
+(setq auto-save-visited-interval 1)
+
+;; Attrap, to complement Dante:
+;; https://github.com/jyp/attrap
+;; http://h2.jaguarpaw.co.uk/posts/how-i-use-dante/
+
+(use-package attrap
+  :ensure t
+  :bind (("C-x /" . attrap-attrap)))
+
 ;; TODO: look into dumb-jump/ag and smartscan:
 ;; https://github.com/jcorrado/dotfiles/blob/9ed00cc3cff418bfdf9163b27bcb7527d6f8c5ad/tag-emacs/emacs.d/init.el#L334
 ;; https://github.com/jcorrado/dotfiles/blob/9ed00cc3cff418bfdf9163b27bcb7527d6f8c5ad/tag-emacs/emacs.d/init.el#L216
@@ -286,7 +315,7 @@
     ("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
  '(package-selected-packages
    (quote
-    (reformatter elm-mode sqlup-mode ag ace-window org-present epresent magit muse markdown-mode haskell-mode slime racket-mode yaml-mode tagedit solarized-theme smex rainbow-delimiters projectile php-mode paredit ido-ubiquitous feature-mode exec-path-from-shell clojure-mode-extra-font-locking cider)))
+    (attrap dante flycheck reformatter elm-mode sqlup-mode ag ace-window org-present epresent magit muse markdown-mode haskell-mode slime racket-mode yaml-mode tagedit solarized-theme smex rainbow-delimiters projectile php-mode paredit ido-ubiquitous feature-mode exec-path-from-shell clojure-mode-extra-font-locking cider)))
  '(pos-tip-background-color "#073642")
  '(pos-tip-foreground-color "#93a1a1")
  '(safe-local-variable-values
