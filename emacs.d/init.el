@@ -257,6 +257,32 @@
   :ensure t
   :bind (("C-x /" . attrap-attrap)))
 
+
+;; PURESCRIPT 
+;; From the purescript docs:
+;; https://github.com/purescript/documentation/blob/5de53609ea0be6e749dada8238d70331dc55db7c/ecosystem/Editor-and-tool-support.md#emacs
+
+;; https://github.com/purescript-emacs/purescript-mode
+(use-package purescript-mode
+  :ensure t)
+
+(defun purescript-hook ()
+ (psc-ide-mode)
+ (company-mode)
+ (flycheck-mode)
+ (turn-on-purescript-indentation))
+
+;; https://github.com/purescript-emacs/psc-ide-emacs
+(use-package psc-ide
+  :ensure t
+  :after purescript-mode
+  :config
+  (add-hook 'purescript-mode-hook 'purescript-hook)
+  :init
+  (auto-save-visited-mode 1)
+  (setq auto-save-visited-interval 1)
+  (customize-set-variable 'psc-ide-rebuild-on-save t))
+
 ;; TODO: look into dumb-jump/ag and smartscan:
 ;; https://github.com/jcorrado/dotfiles/blob/9ed00cc3cff418bfdf9163b27bcb7527d6f8c5ad/tag-emacs/emacs.d/init.el#L334
 ;; https://github.com/jcorrado/dotfiles/blob/9ed00cc3cff418bfdf9163b27bcb7527d6f8c5ad/tag-emacs/emacs.d/init.el#L216
