@@ -242,12 +242,13 @@
   :init
   (add-hook 'haskell-mode-hook 'flycheck-mode)
   (add-hook 'haskell-mode-hook 'dante-mode)
-  (setq dante-tap-type-time 2))
-
-;; Recommended by Dante:
-;; https://github.com/jyp/dante/tree/7411904bfbde25cdb986e001ec682593dcb7c5e3#installation
-(auto-save-visited-mode 1)
-(setq auto-save-visited-interval 1)
+  (setq dante-tap-type-time 2)
+  ;; Recommended by Dante:
+  ;; https://github.com/jyp/dante/tree/7411904bfbde25cdb986e001ec682593dcb7c5e3#installation
+  (auto-save-visited-mode 1)
+  (setq auto-save-visited-interval 1)
+  :bind
+  (("C-c C-c" . haskell-compile)))
 
 ;; Attrap, to complement Dante:
 ;; https://github.com/jyp/attrap
@@ -310,6 +311,7 @@
     ("9e54a6ac0051987b4296e9276eecc5dfb67fdcd620191ee553f40a9b6d943e78" "7f1263c969f04a8e58f9441f4ba4d7fb1302243355cb9faecb55aec878a06ee9" "1157a4055504672be1df1232bed784ba575c60ab44d8e6c7b3800ae76b42f8bd" "5ee12d8250b0952deefc88814cf0672327d7ee70b16344372db9460e9a0e3ffc" "52588047a0fe3727e3cd8a90e76d7f078c9bd62c0b246324e557dfa5112e0d0c" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
  '(electric-indent-mode nil)
  '(fci-rule-color "#282a2e")
+ '(haskell-compile-cabal-build-command "stack build")
  '(haskell-process-type (quote stack-ghci))
  '(haskell-stylish-on-save t)
  '(highlight-changes-colors (quote ("#d33682" "#6c71c4")))
@@ -342,7 +344,7 @@
     ("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
  '(package-selected-packages
    (quote
-    (attrap dante flycheck reformatter elm-mode sqlup-mode ag ace-window org-present epresent magit muse markdown-mode haskell-mode slime racket-mode yaml-mode tagedit solarized-theme smex rainbow-delimiters projectile php-mode paredit ido-ubiquitous feature-mode exec-path-from-shell clojure-mode-extra-font-locking cider)))
+    (psc-ide purescript-mode attrap dante flycheck reformatter elm-mode sqlup-mode ag ace-window org-present epresent magit muse markdown-mode haskell-mode slime racket-mode yaml-mode tagedit solarized-theme smex rainbow-delimiters projectile php-mode paredit ido-ubiquitous feature-mode exec-path-from-shell clojure-mode-extra-font-locking cider)))
  '(pos-tip-background-color "#073642")
  '(pos-tip-foreground-color "#93a1a1")
  '(safe-local-variable-values
