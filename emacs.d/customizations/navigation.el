@@ -28,6 +28,12 @@
 ;; http://www.emacswiki.org/emacs/InteractivelyDoThings
 (ido-mode t)
 
+;; To avoid *Compile-Log* warnings, as per:
+;; https://www.emacswiki.org/emacs/InteractivelyDoThings#toc21
+(defvar ido-cur-item nil)
+(defvar ido-default-item nil)
+(defvar ido-cur-list nil)
+
 ;; This allows partial matches, e.g. "tl" will match "Tyrion Lannister"
 (setq ido-enable-flex-matching t)
 
