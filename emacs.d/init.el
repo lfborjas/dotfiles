@@ -245,8 +245,8 @@
   (setq dante-tap-type-time 2)
   ;; Recommended by Dante:
   ;; https://github.com/jyp/dante/tree/7411904bfbde25cdb986e001ec682593dcb7c5e3#installation
-  (auto-save-visited-mode 1)
-  (setq auto-save-visited-interval 1)
+  ;;(auto-save-visited-mode 1)
+  ;;(setq auto-save-visited-interval 1)
   :bind
   (("C-c C-c" . haskell-compile)))
 
