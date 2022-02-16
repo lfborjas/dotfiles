@@ -184,6 +184,17 @@
 (use-package ag
   :ensure t)
 
+;; for more on elm-mode:
+;; https://github.com/jcollard/elm-mode
+(use-package elm-mode
+  :ensure t
+  :init (setq elm-format-on-save t
+              elm-package-json "elm.json")
+  :config (add-to-list 'company-backends 'company-elm))
+
+(use-package yaml-mode
+  :ensure t)
+
 (use-package swiper
   :ensure t
   :init (setq enable-recursive-minibuffers nil)
@@ -216,6 +227,63 @@
              ((t (:inherit aw-mode-line-face :foreground "orange red" :weight bold :height 3.0))))))
 
 
+;; https://www.flycheck.org/en/latest/user/installation.html
+;; TODO: had to install this manually from MELPA stable, since
+;; it wasn't found in MELPA?
+;; TODONE: I needed to `package-refresh-contents`:
+;; https://github.com/flycheck/flycheck/issues/744
+(use-package flycheck
+  :ensure t)
+
+(use-package dante
+  :ensure t
+  :after haskell-mode
+  :commands 'dante-mode
+  :init
+  (add-hook 'haskell-mode-hook 'flycheck-mode)
+  (add-hook 'haskell-mode-hook 'dante-mode)
+  (setq dante-tap-type-time 2)
+  ;; Recommended by Dante:
+  ;; https://github.com/jyp/dante/tree/7411904bfbde25cdb986e001ec682593dcb7c5e3#installation
+  ;;(auto-save-visited-mode 1)
+  ;;(setq auto-save-visited-interval 1)
+  :bind
+  (("C-c C-c" . haskell-compile)))
+
+;; Attrap, to complement Dante:
+;; https://github.com/jyp/attrap
+;; http://h2.jaguarpaw.co.uk/posts/how-i-use-dante/
+
+(use-package attrap
+  :ensure t
+  :bind (("C-x /" . attrap-attrap)))
+
+
+;; PURESCRIPT 
+;; From the purescript docs:
+;; https://github.com/purescript/documentation/blob/5de53609ea0be6e749dada8238d70331dc55db7c/ecosystem/Editor-and-tool-support.md#emacs
+
+;; https://github.com/purescript-emacs/purescript-mode
+(use-package purescript-mode
+  :ensure t)
+
+(defun purescript-hook ()
+ (psc-ide-mode)
+ (company-mode)
+ (flycheck-mode)
+ (turn-on-purescript-indentation))
+
+;; https://github.com/purescript-emacs/psc-ide-emacs
+(use-package psc-ide
+  :ensure t
+  :after purescript-mode
+  :config
+  (add-hook 'purescript-mode-hook 'purescript-hook)
+  :init
+  (auto-save-visited-mode 1)
+  (setq auto-save-visited-interval 1)
+  (customize-set-variable 'psc-ide-rebuild-on-save t))
+
 ;; TODO: look into dumb-jump/ag and smartscan:
 ;; https://github.com/jcorrado/dotfiles/blob/9ed00cc3cff418bfdf9163b27bcb7527d6f8c5ad/tag-emacs/emacs.d/init.el#L334
 ;; https://github.com/jcorrado/dotfiles/blob/9ed00cc3cff418bfdf9163b27bcb7527d6f8c5ad/tag-emacs/emacs.d/init.el#L216
@@ -232,6 +300,7 @@
  '(ansi-color-names-vector
    (vector "#c5c8c6" "#cc6666" "#b5bd68" "#f0c674" "#81a2be" "#b294bb" "#8abeb7" "#1d1f21"))
  '(coffee-tab-width 2)
+ '(column-number-mode t)
  '(compilation-message-face (quote default))
  '(cua-global-mark-cursor-color "#2aa198")
  '(cua-normal-cursor-color "#839496")
@@ -240,8 +309,11 @@
  '(custom-safe-themes
    (quote
     ("9e54a6ac0051987b4296e9276eecc5dfb67fdcd620191ee553f40a9b6d943e78" "7f1263c969f04a8e58f9441f4ba4d7fb1302243355cb9faecb55aec878a06ee9" "1157a4055504672be1df1232bed784ba575c60ab44d8e6c7b3800ae76b42f8bd" "5ee12d8250b0952deefc88814cf0672327d7ee70b16344372db9460e9a0e3ffc" "52588047a0fe3727e3cd8a90e76d7f078c9bd62c0b246324e557dfa5112e0d0c" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
+ '(electric-indent-mode nil)
  '(fci-rule-color "#282a2e")
+ '(haskell-compile-cabal-build-command "stack build")
  '(haskell-process-type (quote stack-ghci))
+ '(haskell-stylish-on-save t)
  '(highlight-changes-colors (quote ("#d33682" "#6c71c4")))
  '(highlight-symbol-colors
    (--map
@@ -265,6 +337,7 @@
  '(hl-fg-colors
    (quote
     ("#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36")))
+ '(magit-bury-buffer-function (quote magit-mode-quit-window))
  '(magit-diff-use-overlays nil)
  '(magit-use-overlays nil)
  '(nrepl-message-colors
@@ -272,12 +345,18 @@
     ("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
  '(package-selected-packages
    (quote
-    (ag sqlup-mode ace-window org-present epresent magit muse markdown-mode haskell-mode slime racket-mode yaml-mode tagedit solarized-theme smex rainbow-delimiters projectile php-mode paredit ido-ubiquitous feature-mode exec-path-from-shell clojure-mode-extra-font-locking cider)))
+    (psc-ide purescript-mode attrap dante flycheck reformatter elm-mode sqlup-mode ag ace-window org-present epresent magit muse markdown-mode haskell-mode slime racket-mode yaml-mode tagedit solarized-theme smex rainbow-delimiters projectile php-mode paredit ido-ubiquitous feature-mode exec-path-from-shell clojure-mode-extra-font-locking cider)))
  '(pos-tip-background-color "#073642")
  '(pos-tip-foreground-color "#93a1a1")
  '(safe-local-variable-values
    (quote
     ((cider-default-cljs-repl . shadow)
+    (cider-test-infer-test-ns lambda
+                               (ns)
+                               (if
+                                   (string-match "^[^.]+.test" ns)
+                                   ns
+                                 (replace-regexp-in-string "^\\([^.]+\\)." "\\1.test." ns)))
      (cider-shadow-cljs-default-options . "app"))))
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))
  '(term-default-bg-color "#002b36")
@@ -340,3 +419,5 @@
 ;; https://www.reddit.com/r/emacs/comments/cdei4p/failed_to_download_gnu_archive_bad_request/
 ;; + https://emacs.stackexchange.com/questions/51615/my-init-el-gets-stuck-on-trying-to-install-spinner-a-sub-dependency-of-cider#comment79634_51615
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
+(setq visible-bell nil)
+(setq ring-bell-function #'ignore)
